@@ -46,15 +46,14 @@ def find_bit_2(filename, least_common):
             common_bits = []
             if least_common:
                 bit = 0 if s_array[i]['zero'] > s_array[i]['one'] else 1
-                number_lines = [line[i] == str(bit) for line in number_lines ]
+                number_lines = [line for line in number_lines if line[i] == str(bit) ]
             if not least_common:
                 bit = 1 if s_array[i]['zero'] > s_array[i]['one'] else 0
-                number_lines = [line[i] == str(bit) for line in number_lines ]
+                number_lines = [line for line in number_lines if line[i] == str(bit) ]
             i += 1
         toReturn = ' '.join([str(elem) for elem in number_lines[0]]).replace(" ", "")
         print(toReturn)
-        return()
-
+        return(toReturn)
 
 find_bit_2('Inputs/problem_3.txt', True)
 # gamma = find_bit('Inputs/problem_3.txt', True)
