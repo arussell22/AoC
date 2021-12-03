@@ -55,6 +55,12 @@ def find_bit_2(filename, least_common):
         print(toReturn)
         return(toReturn)
 
+
+o2 = find_bit_2('input.txt', True)
+co2 = find_bit_2('input.txt', False)
+
+print(int(o2, 2), int(co2, 2), int(o2, 2) * int(co2, 2))
+
 find_bit_2('Inputs/problem_3.txt', True)
 # gamma = find_bit('Inputs/problem_3.txt', True)
 # epsilon = find_bit('Inputs/problem_3.txt', False)
