@@ -66,7 +66,18 @@ def find_line(array):
                 end = x1+1
             for i in range(start, end):
                 main_array.append(Point(i, y1))
+        elif (abs(x1 - x2) == abs(y1-y2)): 
+            for i in range(abs(x1-x2)+1):
+                if (x1 - x2) < 0:
+                    x = x1 + i
+                else:
+                    x = x1 - i
+                if(y1 - y2) < 0:
+                    y = y1 + i
+                else:
+                    y = y1 - i
+                main_array.append(Point(x, y))
         return main_array
 
   
-parse_file('Inputs/p5_example_input.txt')
+parse_file('Inputs/p5_input.txt')
