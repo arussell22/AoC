@@ -1,46 +1,37 @@
-class Lanternfish:
-    def __init__(self, counter):
-        self.counter = counter
-    
-    def iterate(self):
-        if self.counter == 0:
-            self.counter = 6
-            return True
-        self.counter -= 1
-        return False
-
-    def __str__(self):
-        return str(self.counter)
-
-    def __hash__(self):
-        return hash(str(self))
-
-    def __eq__(self, other):
-        return self.counter == other.counter
-    
-def parse_file(filename):
+  def parse_file(filename):
     array = []
     with open(filename) as in_file:
         line = in_file.readline().rstrip()
         split = line.split(',')
-        print(split)
-        ints = [int(number) for number in split]
-        fishes = [Lanternfish(3)]
-        print(fishes)
-        return fishes
-
-def iterate(fishes, days):
-    counter = 0
-    new_fishes = fishes
-    while (counter != days):
+        fishes = [int(number) for number in split]
+        school = {}
         for fish in fishes:
-            spawn = fish.iterate
-            print(spawn)
-            if (spawn):
-                new_fishes.append(Lanternfish(8))
-        counter += 1
-        print('After', counter, 'days:', fishes)
-    print(len(fishes))
+            if fish not in school.keys():
+                school[fish] = 1
+            else:
+                school[fish] += 1
+        print(school)
+        return school
 
-fishes = parse_file('Inputs/p6_example_input.txt')
-iterate(fishes, 2)
+def iterate(schools, days):
+    counter = 0
+    while (counter < days):
+        new_schools = {}
+        for key,value in schools.items():
+            if (key == 0):
+                if (6 not in new_schools.keys()):
+                    new_schools[6] = value
+                else:
+                    new_schools[6] += value
+                new_schools[8] = value
+            else:
+                if key-1 not in new_schools.keys():
+                    new_schools[key-1] = value
+                else:
+                    new_schools[key-1] += value
+        counter += 1
+        schools = new_schools
+    print(sum(schools.values()))
+    
+fishes = parse_file('Inputs/p6_input.txt')
+iterate(fishes, 256)
